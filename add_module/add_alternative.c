@@ -1,8 +1,6 @@
 /*	
 	Add Employee Details to Excel Sheet
 	
-	Execute :
-		make 
 */
 
 #include <stdio.h>
@@ -51,10 +49,7 @@ void add()
 	getchar();
 	scanf("%[^\n]s",s1->name);
 	
-	//fgets(s1->name,100,stdin); //== "\0"
-	//s1->name[strlen(s1->name)-1] = '\0';
-	
-	//scanf("%s",s1->name);
+
 	
 	printf("\nEnter Employee Email ID : ");
 	scanf("%s",s1->email);
@@ -70,14 +65,14 @@ void add()
 	
 	printf("\nEnter Detials of reporting Manager : ");
 	getchar();
-	//fgets(s1->manager,100,stdin);
+
 	scanf("%[^\n]s",s1->manager);
-	//s1->manager[strlen(s1->manager)-1] = '\0';
+
 	
 	char repo;
 	char totalreportees[max_size]="";
 	printf("\nAny Reportees working under you : Yes(Y)/No(N) : ");
-	//getchar();
+
 	scanf(" %c",&repo);
 	
 	if (repo == 'Y'){
@@ -85,7 +80,7 @@ void add()
 		
 		printf("\nEnter total no. of reporteees : ");
 		int total_reportee;
-		//getchar();
+
 		scanf("%d",&total_reportee);
 		int i;
 		for (i=0; i<total_reportee; i++){
@@ -93,25 +88,18 @@ void add()
 			getchar();
 			printf("\nEnter Reportee Name and ID : ");
 			scanf("%[^\n]s",new_entry_reportee);
-			//fgets(new_entry_reportee,100,stdin);
-			//new_entry_reportee[strlen(new_entry_reportee)-1] = '&';
 			strcat(new_entry_reportee,"&");
 			strcat(totalreportees,new_entry_reportee);
 		}
-		
-		//totalreportees[strlen(totalreportees)-1] = '\0';
 	}
 	
 		
 	printf("\nEnter Tech Area of Employee : ");
-	//getchar();
 	scanf("%s",s1->techarea);
-	//getchar();
+
 	
 	printf("\nProject Information : ");
 	getchar();
-	//fgets(s1->project,100,stdin);
-	//s1->project[strlen(s1->project)-1] = '\0';
 	scanf("%[^\n]s",s1->project);
 	
 	
@@ -136,8 +124,6 @@ void add()
 	);
 	
 	fclose(fp1);
-	
-	//printf("\nSize of s1 pointer %ld : ",sizeof(s1));
 	free(s1);
 }
 
