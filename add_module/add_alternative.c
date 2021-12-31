@@ -42,7 +42,7 @@ struct employee
 
 const char *timestamp(){
 	
-	  char *buffer;
+	  char *buffer = malloc(max_size);
 	  time_t t = time(NULL);
 	  struct tm  *tm;
 	  tm= localtime(&t); 
