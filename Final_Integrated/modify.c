@@ -1,4 +1,5 @@
-#include "header.h"
+//#include "header.h"
+#include "modify.h"
 void modify()
 {
 	extern employee *first_node,*last_node;

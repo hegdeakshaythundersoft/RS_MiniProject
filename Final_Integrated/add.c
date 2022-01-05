@@ -5,7 +5,8 @@
 		make 
 */
 
-#include "header.h"
+//#include "header.h"
+#include "add.h"
 const char *timestamp(){
 			
 	char *buffer = malloc(max_size);

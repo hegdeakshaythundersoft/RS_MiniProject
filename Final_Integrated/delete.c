@@ -1,4 +1,5 @@
-#include "header.h"
+//#include "header.h"
+#include "delete.h"
 void delete(){
 
 	extern employee *first_node,*last_node;

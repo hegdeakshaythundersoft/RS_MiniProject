@@ -3,8 +3,8 @@
 	Mini Project Structure	
 	
 */
-#include "header.h"
-
+//#include "header.h"
+#include "main.h"
 void Start_Menu(){
 
 	printf("\nMain Menu\n");
