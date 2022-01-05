@@ -38,11 +38,12 @@
 
 //extern employee *first_node,*last_node,*new_node,*free_node,*access_node,*write_node;	
 	//extern struct employee *head,*tail;
-void database_read();	
-void Start_Menu();
-void add();
-void delete();
-void modify();
-void view();
-void database_write();
+
+//void database_read();	
+//void Start_Menu();
+//void add();
+//void delete();
+//void modify();
+//void view();
+//void database_write();
 #endif
