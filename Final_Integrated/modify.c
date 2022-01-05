@@ -93,6 +93,20 @@ void modify()
 					
 					//scanf("%s",modify);
 					//strcpy(modify_node->band,modify);
+					printf("\nEnter total no. of reporteees : ");
+					int total_reportee;
+					scanf("%d",&total_reportee);
+					int i;
+					for (i=0; i<total_reportee; i++)
+					{
+						char new_entry_reportee[max_size];
+						getchar();
+						printf("\nEnter Reportee Name and ID : ");
+						scanf("%[^\n]s",new_entry_reportee);
+						strcat(new_entry_reportee,";");
+						strcat(modify_node->reportees,new_entry_reportee);
+					}
+					modify_node->reportees[strlen(modify_node->reportees)-1] = '\0';
 					break;
 					
 					case 6: 
