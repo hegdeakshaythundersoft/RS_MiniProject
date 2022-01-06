@@ -1,6 +1,7 @@
 //#include "header.h"
 #include "TSIndia_Emp_DB.h"
- employee *first_node=NULL,*last_node=NULL;
+employee *first_node=NULL,*last_node=NULL;
+ 
 void database_read(){
 	
 	unsigned register int i,j,reportee_count;
@@ -10,64 +11,78 @@ void database_read(){
 	
 	
 	
-	fp_xls=fopen("TSIndia_Emp_DB.xls","rb");
+	fp_xls=fopen("TSIndia_Emp_DB.xlsx","r");
 	
 /*Linked List Creation*/
 	
 	//while(strcmp(buffer,"END_OF_FILE")){
-	for(i=0;i<5;i++){
+	for(i=0;i<280;i++){
 	new_node=(employee*)malloc(sizeof(employee));
 	
-	fscanf(fp_xls,"%s",buffer);
+	//fscanf(fp_xls,"%s",buffer);
+	fscanf(fp_xls,"%[^\t]%*c",buffer);
 	strcpy(new_node->id,buffer);
 	
 	
-	fscanf(fp_xls,"%s",buffer);
+	//fscanf(fp_xls,"%s",buffer);
+	fscanf(fp_xls,"%[^\t]%*c",buffer);
 	strcpy(new_node->name,buffer);
 	
 	
-	fscanf(fp_xls,"%s",buffer);
+	//fscanf(fp_xls,"%s",buffer);
+	fscanf(fp_xls,"%[^\t]%*c",buffer);
 	strcpy(new_node->email,buffer);
 
 	
-	fscanf(fp_xls,"%s",buffer);
+	//fscanf(fp_xls,"%s",buffer);
+	fscanf(fp_xls,"%[^\t]%*c",buffer);
 	strcpy(new_node->band,buffer);
 	
 	
-	fscanf(fp_xls,"%s",buffer);
+	//fscanf(fp_xls,"%s",buffer);
+	fscanf(fp_xls,"%[^\t]%*c",buffer);
 	strcpy(new_node->date,buffer);
 	
 	
-	fscanf(fp_xls,"%s",buffer);
+	//fscanf(fp_xls,"%s",buffer);
+	fscanf(fp_xls,"%[^\t]%*c",buffer);
 	strcpy(new_node->mobile,buffer);
 	
 	
-	fscanf(fp_xls,"%s",buffer);
+	//fscanf(fp_xls,"%s",buffer);
+	fscanf(fp_xls,"%[^\t]%*c",buffer);
 	strcpy(new_node->manager,buffer);
 
 	
-	fscanf(fp_xls,"%s",buffer);
+	//fscanf(fp_xls,"%s",buffer);
+	fscanf(fp_xls,"%[^\t]%*c",buffer);
 	strcpy(new_node->reportees,buffer);
 	
 	
-	fscanf(fp_xls,"%s",buffer);
+	//fscanf(fp_xls,"%s",buffer);
+	fscanf(fp_xls,"%[^\t]%*c",buffer);
 	strcpy(new_node->techarea,buffer);
 	
 	
-	fscanf(fp_xls,"%s",buffer);
+	//fscanf(fp_xls,"%s",buffer);
+	fscanf(fp_xls,"%[^\t]%*c",buffer);
 	strcpy(new_node->project,buffer);
 
 	
-	fscanf(fp_xls,"%s",buffer);
+	//fscanf(fp_xls,"%s",buffer);
+	fscanf(fp_xls,"%[^\t]%*c",buffer);
 	strcpy(new_node->status,buffer);
 	
-	fscanf(fp_xls,"%s",buffer);
+	//fscanf(fp_xls,"%s",buffer);
+	fscanf(fp_xls,"%[^\n]%*c",buffer);
 	strcpy(new_node->employee_relieving_date,buffer);
 	
 		
 	
 	new_node->next=NULL;
-
+	
+	//struct_id[i] = new_node;
+	
 	if(first_node==NULL)
 		first_node=last_node=new_node;
 	else{
@@ -78,17 +93,9 @@ void database_read(){
 	}
 	}
 
-
-
 	fclose(fp_xls);
 	
-	
-	
-	
 	return;
-	
-	
-	
 	}
 		
 void database_write(){
@@ -100,12 +107,20 @@ void database_write(){
 	FILE *fp_txt;
 	employee *access_node=NULL,*write_node=NULL;
 	
-	fp_txt=fopen("TSIndia_Emp_DB.xls","w");
+	if (remove("TSIndia_Emp_DB.xlsx") == 0){
+		printf("New File Created\n\n");
+	}
 	
-
+	fp_txt=fopen("TSIndia_Emp_DB.xlsx","a");
+	
+	/*
+	fprintf(fp_txt,"%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n","Associate_Code","Associate_Name","Email","Department","Date_Of_Joining",
+	"Phone_no.","Reporting_Manager","reportees","Tech_area","Project_info","Status","Relieving_Date");
+	*/
+	
 	write_node=first_node;
 	//for(i=0;(write_node!=NULL);i++){
-	for(i=0;i<6;i++){
+	for(i=0;i<281;i++){
 	strcpy(buffer,"\0");
 	
 	strcpy(buffer,write_node->id);
@@ -163,39 +178,7 @@ void database_write(){
 
 	
 }
-	fclose(fopen("fp_txt","wb"));
+	//fclose(fopen("fp_txt","wb"));
 	fclose(fp_txt);
 	return;
 }	
-
-/*Linked List Destruction*/
-	/*free_node=first_node;
-	while(free_node!=NULL){
-	access_node=free_node;
-	free_node=free_node->next;
-	free(access_node);
-	}*//*Linked List Destruction*/
-	
-	
-	//printf("\n%s\n",first_node->id);
-	
-	
-	
-	/*fclose(fopen("base.xls","ab"));
-	fclose(fp_txt);
-	fp_txt=fopen("base.xls","rb");
-	buf_char=fgetc(fp_txt);
-	while(buf_char!=EOF){
-	
-	printf("%c",buf_char);
-	buf_char=fgetc(fp_txt);
-	
-	}	
-	
-
-	fclose(fp_txt);
-	return 0;
-
-
-
-}*/
