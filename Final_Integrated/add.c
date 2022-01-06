@@ -151,6 +151,8 @@ void add()
 	
 	printf("Employee Details Successfully added into Excel File\n");
 	*/
+	extern unsigned int total_nodes;
+	total_nodes+=1;
 	add_node->next=NULL;
 	last_node->next=add_node;
 	last_node=add_node;
