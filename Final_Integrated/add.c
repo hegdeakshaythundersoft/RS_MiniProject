@@ -87,7 +87,7 @@ void add()
 			getchar();
 			printf("\nEnter Reportee Name and ID : ");
 			scanf("%[^\n]s",new_entry_reportee);
-			strcat(new_entry_reportee,"/");
+			strcat(new_entry_reportee,"//");
 			strcat(add_node->reportees,new_entry_reportee);
 		}
 		add_node->reportees[strlen(add_node->reportees)-1] = '\0';

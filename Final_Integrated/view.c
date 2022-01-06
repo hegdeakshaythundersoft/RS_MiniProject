@@ -32,19 +32,18 @@ void view(){
 		printf("%20s\t:\t%s\n",first_node->mobile,view_node->mobile);
 		printf("%20s\t:\t%s\n",first_node->manager,view_node->manager);
 		
-		/*reportee_count=0;
-		for(i=0;i<max_size;i++){
-			buf_char=view_node->reportees[i];
-			
-			if(buf_char==';'){
-				printf("\n%20s[%d]\t:\t",first_node->reportees,1+reportee_count++);
-				continue;	
-			}
-			else if(i==0)
-				printf("%20s[%d]\t:\t",first_node->reportees,1+reportee_count++);
-			printf("%c",buf_char);
+		if (view_node->reportees != "NA"){
+			printf("%20s\t:\t%s\n",first_node->reportees,"NA");
 		}
-		printf("\n");*/
+		else{
+			printf("%20s\t:",first_node->reportees);
+			char* token = strtok(view_node->reportees, "//");
+			printf("\t%s\n", token);
+			while (token != NULL) {
+				printf("\t\t\t\t%s\n", token);
+				token = strtok(NULL, "//");
+			}
+		}
 		printf("%20s\t:\t%s\n",first_node->techarea,view_node->techarea);
 		printf("%20s\t:\t%s\n",first_node->project,view_node->project);
 		printf("%20s\t:\t%s\n",first_node->status,view_node->status);
