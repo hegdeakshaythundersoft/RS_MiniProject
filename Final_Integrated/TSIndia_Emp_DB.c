@@ -1,11 +1,15 @@
 //#include "header.h"
 #include "TSIndia_Emp_DB.h"
 employee *first_node=NULL,*last_node=NULL;
- 
+unsigned int total_nodes = 0;
+
 void database_read(){
 	
+	extern unsigned int total_nodes;
+	
 	unsigned register int i,j,reportee_count;
-	signed char buffer[max_size],file_access,buffer_char,buf_char,buffer_max[max_size];
+	signed char buffer[max_size],buffer1[max_size],buffer2[max_size],buffer3[max_size],buffer4[max_size],buffer5[max_size],buffer6[max_size],buffer7[max_size],buffer8[max_size],buffer9[max_size],buffer10[max_size],buffer11[max_size];
+
 	FILE *fp_xls;
 	employee *new_node=NULL;
 	
@@ -13,71 +17,54 @@ void database_read(){
 	
 	fp_xls=fopen("TSIndia_Emp_DB.xlsx","r");
 	
-/*Linked List Creation*/
-	
-	//while(strcmp(buffer,"END_OF_FILE")){
-	for(i=0;i<280;i++){
+	total_nodes = 0;
+	printf("Im in database Read section\n");
+	while(fscanf(fp_xls,
+		"%[^\t]%*c%[^\t]%*c%[^\t]%*c%[^\t]%*c%[^\t]%*c%[^\t]%*c%[^\t]%*c%[^\t]%*c%[^\t]%*c%[^\t]%*c%[^\t]%*c%[^\n]%*c",
+		buffer,
+		buffer1,
+		buffer2,
+		buffer3,
+		buffer4,
+		buffer5,
+		buffer6,
+		buffer7,
+		buffer8,
+		buffer9,
+		buffer10,
+		buffer11
+	)!=EOF)
+{
 	new_node=(employee*)malloc(sizeof(employee));
-	
-	//fscanf(fp_xls,"%s",buffer);
-	fscanf(fp_xls,"%[^\t]%*c",buffer);
+
 	strcpy(new_node->id,buffer);
-	
-	
-	//fscanf(fp_xls,"%s",buffer);
-	fscanf(fp_xls,"%[^\t]%*c",buffer);
-	strcpy(new_node->name,buffer);
-	
-	
-	//fscanf(fp_xls,"%s",buffer);
-	fscanf(fp_xls,"%[^\t]%*c",buffer);
-	strcpy(new_node->email,buffer);
 
-	
-	//fscanf(fp_xls,"%s",buffer);
-	fscanf(fp_xls,"%[^\t]%*c",buffer);
-	strcpy(new_node->band,buffer);
-	
-	
-	//fscanf(fp_xls,"%s",buffer);
-	fscanf(fp_xls,"%[^\t]%*c",buffer);
-	strcpy(new_node->date,buffer);
-	
-	
-	//fscanf(fp_xls,"%s",buffer);
-	fscanf(fp_xls,"%[^\t]%*c",buffer);
-	strcpy(new_node->mobile,buffer);
-	
-	
-	//fscanf(fp_xls,"%s",buffer);
-	fscanf(fp_xls,"%[^\t]%*c",buffer);
-	strcpy(new_node->manager,buffer);
+	strcpy(new_node->name,buffer1);
 
-	
-	//fscanf(fp_xls,"%s",buffer);
-	fscanf(fp_xls,"%[^\t]%*c",buffer);
-	strcpy(new_node->reportees,buffer);
-	
-	
-	//fscanf(fp_xls,"%s",buffer);
-	fscanf(fp_xls,"%[^\t]%*c",buffer);
-	strcpy(new_node->techarea,buffer);
-	
-	
-	//fscanf(fp_xls,"%s",buffer);
-	fscanf(fp_xls,"%[^\t]%*c",buffer);
-	strcpy(new_node->project,buffer);
+	strcpy(new_node->email,buffer2);
 
+	strcpy(new_node->band,buffer3);
+
+	strcpy(new_node->date,buffer4);
+
+	strcpy(new_node->mobile,buffer5);
 	
-	//fscanf(fp_xls,"%s",buffer);
-	fscanf(fp_xls,"%[^\t]%*c",buffer);
-	strcpy(new_node->status,buffer);
+	strcpy(new_node->manager,buffer6);
+
+	strcpy(new_node->reportees,buffer7);
 	
-	//fscanf(fp_xls,"%s",buffer);
-	fscanf(fp_xls,"%[^\n]%*c",buffer);
-	strcpy(new_node->employee_relieving_date,buffer);
+
+	strcpy(new_node->techarea,buffer8);
 	
-		
+
+	strcpy(new_node->project,buffer9);
+
+
+	strcpy(new_node->status,buffer10);
+	
+	strcpy(new_node->employee_relieving_date,buffer11);
+	
+	total_nodes+=1;
 	
 	new_node->next=NULL;
 	
@@ -96,14 +83,14 @@ void database_read(){
 	fclose(fp_xls);
 	
 	return;
-	}
+}
 		
 void database_write(){
 	
-	
+	extern unsigned int total_nodes;
 	
 	unsigned register int i,j,reportee_count;
-	signed char buffer[max_size],file_access,buffer_char,buf_char,buffer_max[max_size];
+	signed char buffer[max_size];
 	FILE *fp_txt;
 	employee *access_node=NULL,*write_node=NULL;
 	
@@ -113,14 +100,9 @@ void database_write(){
 	
 	fp_txt=fopen("TSIndia_Emp_DB.xlsx","a");
 	
-	/*
-	fprintf(fp_txt,"%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n","Associate_Code","Associate_Name","Email","Department","Date_Of_Joining",
-	"Phone_no.","Reporting_Manager","reportees","Tech_area","Project_info","Status","Relieving_Date");
-	*/
-	
 	write_node=first_node;
-	//for(i=0;(write_node!=NULL);i++){
-	for(i=0;i<281;i++){
+
+	for(i=0;i<total_nodes;i++){
 	strcpy(buffer,"\0");
 	
 	strcpy(buffer,write_node->id);
@@ -169,8 +151,6 @@ void database_write(){
 	strcpy(buffer,write_node->employee_relieving_date);
 	fprintf(fp_txt,"%s\n",buffer);
 	
-	//fprintf(fp_txt,"%s","\n");
-	
 	
 	access_node=write_node;
 	write_node=write_node->next;
@@ -178,7 +158,6 @@ void database_write(){
 
 	
 }
-	//fclose(fopen("fp_txt","wb"));
 	fclose(fp_txt);
 	return;
 }	
