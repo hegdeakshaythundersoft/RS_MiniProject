@@ -6,7 +6,7 @@ void view(){
 	extern employee *first_node,*last_node;
 	employee *view_node=first_node;
 	
-	unsigned char entered_id[max_size];
+	unsigned char entered_id[max_size],reportee_display[max_size];
 	unsigned register int i,reportee_count,flag=1;
 	
 	printf("Enter the Thundersoft Employee ID(Asociate code) to access the deatails\n");
@@ -39,7 +39,10 @@ void view(){
 		}
 		else{
 			printf("%20s\t:",first_node->reportees);
-			char* token = strtok(view_node->reportees, "//");
+			//char* token = strtok(view_node->reportees, "//");
+			strcpy(reportee_display,view_node->reportees);
+			char* token = strtok(reportee_display, "//");
+			
 			//printf("\t%s\n", token);
 			while (token != NULL) {
 				if(flag){
