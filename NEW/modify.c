@@ -7,10 +7,10 @@ void modify()
 	int choice;
 
 	employee *modify_node=first_node;
-	unsigned char entered_id[max_size],buf_char,modify[max_size];
-	unsigned register int i,reportee_count;
+	unsigned char entered_id[max_size],modify[max_size],reportee_display[max_size];
+	unsigned register int i,reportee_count,flag=1;
 	
-	printf("Enter the Thundersoft Employee ID(Asociate code) to Modify the deatails\n");
+	printf("Enter the Thundersoft Employee ID(Asociate code) to Modify the details\n");
 	scanf("%s",entered_id);
 	
 	while(modify_node!=NULL){
@@ -35,16 +35,18 @@ void modify()
 		printf("%20s\t:\t%s\n",first_node->manager,modify_node->manager);
 		
 		reportee_count=0;
-		for(i=0;i<max_size;i++){
-			buf_char=modify_node->reportees[i];
-			
-			if(buf_char=='/'){
-				printf("\n%20s[%d]\t:\t",first_node->reportees,1+reportee_count++);
-				continue;	
+		strcpy(reportee_display,modify_node->reportees);
+		char* token = strtok(reportee_display, "//");
+		//printf("\t%s\n", token);
+		while (token != NULL) {
+			if(flag){
+				printf("\t%s\n", token);
+				flag=0;
+				}
+			else{
+				printf("\t\t\t\t%s\n", token);	
 			}
-			else if(i==0)
-				printf("%20s[%d]\t:\t",first_node->reportees,1+reportee_count++);
-			printf("%c",buf_char);
+			token = strtok(NULL, "//");
 		}
 		printf("\n");
 		printf("%20s\t:\t%s\n",first_node->techarea,modify_node->techarea);
@@ -60,13 +62,13 @@ void modify()
 			
 				printf("\n\n\n\n\n");
 				printf("1.Modify Name\n2.Modify Phone number\n3.Modify Reporting Manager Name\n4.Modify Band\n5.Modify Reportees\n6.Modify Tech Area\n7.Modify Project Info\n8.Exit\n");
-				printf("Enter your choice:");
+				printf("Enter your choice : ");
 				scanf("%d",&choice);
 				switch(choice)
 				{
 					case 1: 
 					printf("Enter the name to modify\n");
-					scanf("%s",modify);
+					scanf("%[^\n]s",modify);
 					strcpy(modify_node->name,modify);
 					break;
 			
@@ -78,7 +80,7 @@ void modify()
 			
 					case 3: 
 					printf("Enter the reporting manager name\n");
-					scanf("%s",modify);
+					scanf("%[^\n]s",modify);
 					strcpy(modify_node->manager,modify);
 					break;
 			
@@ -89,10 +91,6 @@ void modify()
 					break;
 					
 					case 5: 
-					printf("Enter the Reportees\n");
-					
-					//scanf("%s",modify);
-					//strcpy(modify_node->band,modify);
 					printf("\nEnter total no. of reporteees : ");
 					int total_reportee;
 					scanf("%d",&total_reportee);
@@ -111,13 +109,13 @@ void modify()
 					
 					case 6: 
 					printf("Enter the tech area\n");
-					scanf("%s",modify);
+					scanf("%[^\n]s",modify);
 					strcpy(modify_node->techarea,modify);
 					break;
 					
 					case 7: 
 					printf("project info\n");
-					scanf("%s",modify);
+					scanf("%[^\n]s",modify);
 					strcpy(modify_node->project,modify);
 					break;
 			
@@ -142,10 +140,6 @@ void modify()
 
 	else
 		printf("Employee ID doesn't exist\n");
-
-
-
-
 
 	Start_Menu();
 	//return;
