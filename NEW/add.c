@@ -117,6 +117,9 @@ void add()
 	strcpy(add_node->employee_relieving_date,"NA");	//implicit initialisation
 	//strcat(add_node->employee_relieving_date,"\n");
 	
+	printf("Employee Successfully added : \n");
+	view(add_node);
+	
 	extern unsigned int total_nodes;
 	total_nodes+=1;
 	add_node->next=NULL;

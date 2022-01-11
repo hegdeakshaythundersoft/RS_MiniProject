@@ -31,7 +31,7 @@ void Start_Menu(){
 			break;
 			
 		case '3': 
-			func[2]();
+			func[2](NULL);
 			break;
 			
 		case '4': 

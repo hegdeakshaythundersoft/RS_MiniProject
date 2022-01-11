@@ -25,73 +25,52 @@ void modify()
 			modify_node=modify_node->next;
 	}
 	if(modify_node!=NULL){
+	
 		printf("%20s\t:\t\n","Details of the Employee");
-		printf("%20s\t:\t%s\n",first_node->id,modify_node->id);
-		printf("%20s\t:\t%s\n",first_node->name,modify_node->name);
-		printf("%20s\t:\t%s\n",first_node->email,modify_node->email);
-		printf("%20s\t:\t%s\n",first_node->band,modify_node->band);
-		printf("%20s\t:\t%s\n",first_node->date,modify_node->date);
-		printf("%20s\t:\t%s\n",first_node->mobile,modify_node->mobile);
-		printf("%20s\t:\t%s\n",first_node->manager,modify_node->manager);
-		
-		reportee_count=0;
-		strcpy(reportee_display,modify_node->reportees);
-		char* token = strtok(reportee_display, "//");
-		//printf("\t%s\n", token);
-		while (token != NULL) {
-			if(flag){
-				printf("\t%s\n", token);
-				flag=0;
-				}
-			else{
-				printf("\t\t\t\t%s\n", token);	
-			}
-			token = strtok(NULL, "//");
-		}
-		printf("\n");
-		printf("%20s\t:\t%s\n",first_node->techarea,modify_node->techarea);
-		printf("%20s\t:\t%s\n",first_node->project,modify_node->project);
-		printf("%20s\t:\t%s\n",first_node->status,modify_node->status);
-		printf("%20s\t:\t%s\n",first_node->employee_relieving_date,modify_node->employee_relieving_date);
-		printf("\n\n\n\n");
-		
-		
+		view(modify_node);
 		
 		while(exp)
 			{       
 			
-				printf("\n\n\n\n\n");
+				printf("\n\n\n");
 				printf("1.Modify Name\n2.Modify Phone number\n3.Modify Reporting Manager Name\n4.Modify Band\n5.Modify Reportees\n6.Modify Tech Area\n7.Modify Project Info\n8.Exit\n");
 				printf("Enter your choice : ");
 				scanf("%d",&choice);
 				switch(choice)
 				{
 					case 1: 
-					printf("Enter the name to modify\n");
+					printf("\nEnter name to modify : ");
+					getchar();
 					scanf("%[^\n]s",modify);
 					strcpy(modify_node->name,modify);
+					printf("Name Modified !!\n");
 					break;
 			
 					case 2:
-					printf("Enter the phone number\n");
+					printf("\nEnter phone number : ");
 					scanf("%s",modify);
 					strcpy(modify_node->mobile,modify);
+					printf("\nPhone Number Modified !!\n");
 					break;
 			
 					case 3: 
-					printf("Enter the reporting manager name\n");
+					printf("\nEnter the reporting manager name : ");
+					getchar();
 					scanf("%[^\n]s",modify);
 					strcpy(modify_node->manager,modify);
+					printf("Reporting Manager details Modified !!\n");
 					break;
 			
 					case 4: 
-					printf("Enter the band\n");
+					printf("\nEnter the band : ");
 					scanf("%s",modify);
 					strcpy(modify_node->band,modify);
+					printf("Employee Band Modified !!\n");
 					break;
 					
 					case 5: 
 					printf("\nEnter total no. of reporteees : ");
+					strcat(modify_node->reportees,"//");
 					int total_reportee;
 					scanf("%d",&total_reportee);
 					int i;
@@ -105,39 +84,40 @@ void modify()
 						strcat(modify_node->reportees,new_entry_reportee);
 					}
 					modify_node->reportees[strlen(modify_node->reportees)-2] = '\0';
+					printf("Employee Reportees Modified !!\n");
 					break;
 					
 					case 6: 
-					printf("Enter the tech area\n");
+					printf("\nEnter the tech area : ");
+					getchar();
 					scanf("%[^\n]s",modify);
 					strcpy(modify_node->techarea,modify);
+					printf("\nEmployee Tech Area Modified !!\n");
 					break;
 					
 					case 7: 
-					printf("project info\n");
+					printf("\nProject Info : ");
+					getchar();
 					scanf("%[^\n]s",modify);
 					strcpy(modify_node->project,modify);
+					printf("Employee Project Information Modified !!\n");
 					break;
 			
 					case 8:
-					printf("Exiting from the Modify\n");
+					printf("\nAfter Modifying Employee Details : ");
+					view(modify_node);
 					exp=0;
+					printf("Exiting from the Modify\n");
 					break;
-			//exit(0);
 			
 					default :
 					printf("Invalid Option -- Enter Your choice again\n");				
 					break;
-			
 				}
-			
-			
-			
+
 			}
-			
 	}
 	
-
 	else
 		printf("Employee ID doesn't exist\n");
 

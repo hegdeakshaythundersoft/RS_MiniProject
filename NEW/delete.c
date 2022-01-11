@@ -48,27 +48,19 @@ void delete(){
 			delete_node=delete_node->next;
 	}
 	if(delete_node!=NULL){
+	
 		printf("%20s\t:\t\n","Details of the Employee to be deleted");
-		printf("%20s\t:\t%s\n",first_node->id,delete_node->id);
-		printf("%20s\t:\t%s\n",first_node->name,delete_node->name);
-		printf("%20s\t:\t%s\n",first_node->email,delete_node->email);
-		printf("%20s\t:\t%s\n",first_node->band,delete_node->band);
-		printf("%20s\t:\t%s\n",first_node->date,delete_node->date);
-		printf("%20s\t:\t%s\n",first_node->mobile,delete_node->mobile);
-		printf("%20s\t:\t%s\n",first_node->manager,delete_node->manager);
-		printf("%20s\t:\t%s\n",first_node->reportees,delete_node->reportees);
-		printf("%20s\t:\t%s\n",first_node->techarea,delete_node->techarea);
-		printf("%20s\t:\t%s\n",first_node->project,delete_node->project);
-		printf("%20s\t:\t%s\n",first_node->status,delete_node->status);
-		printf("%20s\t:\t%s\n",first_node->employee_relieving_date,delete_node->employee_relieving_date);
-		printf("\n\n");
+		view(delete_node);
+		printf("\n\n\n\n");
+		
 		printf("Enter the reason for the deletion\n");
 		scanf("%[^\n]s",reason_for_deletion);
 		strcpy(delete_node->status,reason_for_deletion);
-		strcpy(delete_node->employee_relieving_date,datestamp());			
+		strcpy(delete_node->employee_relieving_date,datestamp());		
+		printf("\nEmployeee Deletion updated !!\n");
+		view(delete_node);
+		printf("\n\n\n\n");		
 	}
-	
-
 	else
 		printf("Employee ID doesn't exist\n");
 

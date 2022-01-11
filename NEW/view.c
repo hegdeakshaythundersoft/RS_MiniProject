@@ -1,15 +1,24 @@
 //#include "header.h"
 #include "view.h"
 
-void view(){
-
+void view(employee *view_node){
+	
+	unsigned register redirect=1,flag=1;
 	extern employee *first_node,*last_node;
-	employee *view_node=first_node;
 	
-	unsigned char entered_id[max_size],reportee_display[max_size];
-	unsigned register int i,reportee_count,flag=1;
+	if (view_node == NULL){
 	
-	printf("Enter the Thundersoft Employee ID(Asociate code) to access the deatails\n");
+	redirect=0;
+	
+	//extern employee *first_node,*last_node;
+	//employee *view_node=first_node;
+	view_node=first_node;
+	
+	//unsigned char entered_id[max_size],reportee_display[max_size];
+	unsigned char entered_id[max_size];
+	unsigned register int i,reportee_count;
+	
+	printf("Enter the Thundersoft Employee ID(Asociate code) to access the details\n");
 	scanf("%s",entered_id);
 	
 	while(view_node!=NULL){
@@ -22,8 +31,11 @@ void view(){
 				break;
 		else
 			view_node=view_node->next;
+		}
 	}
 	if(view_node!=NULL){
+	
+	unsigned char reportee_display[max_size];
 	
 	if(!(strcmp(view_node->status,"Active"))){
 		printf("%20s\t:\t%s\n",first_node->id,view_node->id);
@@ -62,9 +74,12 @@ void view(){
 		printf("%20s\t:\t%s\n",first_node->project,view_node->project);
 		printf("%20s\t:\t%s\n",first_node->status,view_node->status);
 		printf("%20s\t:\t%s\n",first_node->employee_relieving_date,view_node->employee_relieving_date);
+		
+		if (redirect)
+			return;
 	}
 	else{
-		printf("Employee has been deleted \n");
+		printf("\tEmployee has been deleted \n");
 		printf("%20s\t:\t%s\n",first_node->id,view_node->id);
 		printf("%20s\t:\t%s\n",first_node->name,view_node->name);
 		printf("%20s\t:\t%s\n",first_node->status,view_node->status);
