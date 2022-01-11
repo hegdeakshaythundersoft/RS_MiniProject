@@ -104,7 +104,7 @@ void modify()
 					break;
 			
 					case 8:
-					printf("\nAfter Modifying Employee Details : ");
+					printf("\nAfter Modifying Employee Details : \n");
 					view(modify_node);
 					exp=0;
 					printf("Exiting from the Modify\n");
